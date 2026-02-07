@@ -1,0 +1,114 @@
+/* ==========================================
+   TIMELINE PAGE STYLES
+   ========================================== */
+
+.timeline-event {
+    position: relative;
+}
+
+.timeline-content {
+    transition: all 0.3s ease;
+}
+
+.timeline-content:hover {
+    transform: translateX(10px);
+}
+
+/* ==========================================
+   TECH SPECS PAGE STYLES
+   ========================================== */
+
+/* Arc Reactor Display */
+.reactor-core {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #00d9ff 0%, #0099cc 50%, transparent 70%);
+    box-shadow: 0 0 60px rgba(0, 217, 255, 0.8),
+                0 0 120px rgba(0, 217, 255, 0.4),
+                inset 0 0 40px rgba(0, 217, 255, 0.6);
+    animation: reactor-pulse 2s ease-in-out infinite;
+}
+
+@keyframes reactor-pulse {
+    0%, 100% {
+        box-shadow: 0 0 60px rgba(0, 217, 255, 0.8),
+                    0 0 120px rgba(0, 217, 255, 0.4),
+                    inset 0 0 40px rgba(0, 217, 255, 0.6);
+    }
+    50% {
+        box-shadow: 0 0 80px rgba(0, 217, 255, 1),
+                    0 0 160px rgba(0, 217, 255, 0.6),
+                    inset 0 0 50px rgba(0, 217, 255, 0.8);
+    }
+}
+
+.reactor-ring {
+    position: absolute;
+    border: 2px solid rgba(0, 217, 255, 0.4);
+    border-radius: 50%;
+}
+
+.reactor-ring-1 {
+    width: 180px;
+    height: 180px;
+    border-width: 3px;
+}
+
+.reactor-ring-2 {
+    width: 240px;
+    height: 240px;
+    border-width: 2px;
+}
+
+.reactor-ring-3 {
+    width: 300px;
+    height: 300px;
+    border-width: 1px;
+}
+
+/* Nanotech Cells */
+.nano-cell {
+    transition: all 0.3s ease;
+}
+
+.nano-cell:hover {
+    background: rgba(114, 9, 183, 0.6) !important;
+    transform: scale(1.2);
+}
+
+/* Repulsor Diagram Animations */
+.pulse-circle {
+    animation: pulse-ring 2s ease-in-out infinite;
+}
+
+@keyframes pulse-ring {
+    0%, 100% {
+        stroke-opacity: 1;
+    }
+    50% {
+        stroke-opacity: 0.3;
+    }
+}
+
+/* Table Styles */
+table {
+    background: rgba(10, 14, 26, 0.5);
+}
+
+table thead th {
+    position: sticky;
+    top: 0;
+    background: #0a0e1a;
+    backdrop-filter: blur(10px);
+}
+
+/* Feature Items Hover */
+.feature-item {
+    transition: all 0.3s ease;
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 217, 255, 0.2);
+}

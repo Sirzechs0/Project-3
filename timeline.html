@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timeline | S.T.A.R.K. INDUSTRIES</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&family=Michroma&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        stark: {
+                            bg: '#0a0e1a',
+                            black: '#050505',
+                            red: '#e63946',
+                            redDark: '#9d0208',
+                            gold: '#fca311',
+                            blue: '#00d9ff',
+                            blueDim: 'rgba(0, 217, 255, 0.1)',
+                            purple: '#7209b7',
+                            green: '#06ffa5'
+                        }
+                    },
+                    fontFamily: {
+                        hud: ['Rajdhani', 'sans-serif'],
+                        mono: ['Share Tech Mono', 'monospace'],
+                        tech: ['Michroma', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-hud selection:bg-stark-red selection:text-white bg-stark-black text-white overflow-x-hidden">
+
+    <div class="cursor-dot"></div>
+    <div class="cursor-circle"></div>
+    <div class="hud-grid"></div>
+    <div id="particles-bg"></div>
+
+    <!-- Navigation -->
+    <nav id="main-nav" class="fixed w-full z-50 top-0 left-0 p-6 flex justify-between items-center bg-gradient-to-b from-stark-black via-stark-black/95 to-transparent backdrop-blur-sm">
+        <div class="text-2xl font-tech font-bold text-stark-blue tracking-widest border-l-4 border-stark-red pl-3 cursor-pointer hover-glow">
+            <a href="index.html">STARK<span class="text-white">IND</span></a>
+        </div>
+        
+        <div class="hidden md:flex space-x-8 text-sm font-hud tracking-widest text-gray-400 font-semibold">
+            <a href="index.html" class="nav-link relative">HOME</a>
+            <a href="armory.html" class="nav-link relative">ARMORY</a>
+            <a href="systems.html" class="nav-link relative">SYSTEMS</a>
+            <a href="protocols.html" class="nav-link relative">PROTOCOLS</a>
+            <a href="timeline.html" class="nav-link active relative">TIMELINE</a>
+        </div>
+
+        <div class="flex items-center gap-4">
+            <div class="w-24 h-1 bg-stark-blue/30 relative overflow-hidden">
+                <div class="power-bar absolute left-0 h-full bg-stark-blue"></div>
+            </div>
+        </div>
+
+        <button id="mobile-menu-toggle" class="md:hidden text-stark-blue">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-stark-black/98 backdrop-blur-xl z-40 hidden">
+        <div class="flex flex-col items-center justify-center h-full space-y-8">
+            <a href="index.html" class="mobile-nav-link text-3xl font-tech text-gray-400">HOME</a>
+            <a href="armory.html" class="mobile-nav-link text-3xl font-tech text-gray-400">ARMORY</a>
+            <a href="systems.html" class="mobile-nav-link text-3xl font-tech text-gray-400">SYSTEMS</a>
+            <a href="protocols.html" class="mobile-nav-link text-3xl font-tech text-gray-400">PROTOCOLS</a>
+            <a href="timeline.html" class="mobile-nav-link text-3xl font-tech text-stark-blue">TIMELINE</a>
+        </div>
+    </div>
+
+    <!-- Page Header -->
+    <header class="relative pt-32 pb-20 px-6 overflow-hidden">
+        <div class="container mx-auto relative z-10">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="h-px w-12 bg-gradient-to-r from-stark-red to-transparent"></div>
+                <span class="text-stark-red font-tech text-sm tracking-[0.3em]">CHRONOLOGICAL DATABASE</span>
+            </div>
+            <h1 class="text-6xl md:text-8xl font-tech font-bold mb-6 leading-none">
+                TIMELINE
+            </h1>
+            <p class="text-gray-400 text-lg max-w-2xl">
+                The complete journey from billionaire playboy to Earth's greatest defender. Every milestone, every evolution.
+            </p>
+        </div>
+        
+        <div class="absolute top-0 right-0 w-1/2 h-full opacity-10">
+            <div class="w-full h-full bg-gradient-radial from-stark-blue/30 to-transparent"></div>
+        </div>
+    </header>
+
+    <!-- Timeline Section -->
+    <section class="py-20 px-6 relative">
+        <div class="container mx-auto max-w-6xl">
+            
+            <!-- Timeline Line -->
+            <div class="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-stark-blue via-stark-purple to-stark-red h-full opacity-30 hidden md:block"></div>
+
+            <!-- Timeline Events -->
+            <div class="space-y-20">
+                
+                <!-- Event 1: 2008 - Origin -->
+                <div class="timeline-event relative">
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div class="timeline-content md:text-right" data-aos="fade-right">
+                            <div class="inline-block px-4 py-2 bg-stark-red/20 border border-stark-red/50 rounded-full mb-4">
+                                <span class="text-stark-red font-tech text-sm tracking-wider">2008</span>
+                            </div>
+                            <h3 class="text-4xl font-tech font-bold text-white mb-4">THE BEGINNING</h3>
+                            <p class="text-gray-400 leading-relaxed mb-6">
+                                Captured in Afghanistan. Shrapnel lodged near heart. Arc Reactor technology saves life and changes destiny. The Mark I is born in a cave with a box of scraps.
+                            </p>
+                            <div class="flex gap-3 md:justify-end">
+                                <div class="px-3 py-1 bg-stark-red/10 border border-stark-red/30 rounded text-xs text-stark-red font-mono">MARK I</div>
+                                <div class="px-3 py-1 bg-stark-gold/10 border border-stark-gold/30 rounded text-xs text-stark-gold font-mono">ARC REACTOR</div>
+                            </div>
+                        </div>
+                        <div class="hidden md:block"></div>
+                    </div>
+                    <div class="absolute left-1/2 top-8 transform -translate-x-1/2 w-6 h-6 bg-stark-red rounded-full border-4 border-stark-black shadow-lg shadow-stark-red/50 hidden md:block z-10"></div>
+                </div>
+
+                <!-- Event 2: 2010 - Evolution -->
+                <div class="timeline-event relative">
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div class="hidden md:block"></div>
+                        <div class="timeline-content" data-aos="fade-left">
+                            <div class="inline-block px-4 py-2 bg-stark-blue/20 border border-stark-blue/50 rounded-full mb-4">
+                                <span class="text-stark-blue font-tech text-sm tracking-wider">2010</span>
+                            </div>
+                            <h3 class="text-4xl font-tech font-bold text-white mb-4">NEW ELEMENT</h3>
+                            <p class="text-gray-400 leading-relaxed mb-6">
+                                Palladium poisoning threatens existence. Discovery of new element through father's research. Mark VI debuts with triangular Arc Reactor. Whiplash defeated. Technology secured.
+                            </p>
+                            <div class="flex gap-3">
+                                <div class="px-3 py-1 bg-stark-blue/10 border border-stark-blue/30 rounded text-xs text-stark-blue font-mono">MARK VI</div>
+                                <div class="px-3 py-1 bg-stark-purple/10 border border-stark-purple/30 rounded text-xs text-stark-purple font-mono">NEW ELEMENT</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute left-1/2 top-8 transform -translate-x-1/2 w-6 h-6 bg-stark-blue rounded-full border-4 border-stark-black shadow-lg shadow-stark-blue/50 hidden md:block z-10"></div>
+                </div>
+
+                <!-- Event 3: 2012 - Avengers -->
+                <div class="timeline-event relative">
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div class="timeline-content md:text-right" data-aos="fade-right">
+                            <div class="inline-block px-4 py-2 bg-stark-purple/20 border border-stark-purple/50 rounded-full mb-4">
+                                <span class="text-stark-purple font-tech text-sm tracking-wider">2012</span>
+                            </div>
+                            <h3 class="text-4xl font-tech font-bold text-white mb-4">THE AVENGERS</h3>
+                            <p class="text-gray-400 leading-relaxed mb-6">
+                                First encounter with extraterrestrial threat. New York invaded by Chitauri. Nuclear missile redirected through wormhole. Earth's Mightiest Heroes assembled. PTSD begins.
+                            </p>
+                            <div class="flex gap-3 md:justify-end">
+                                <div class="px-3 py-1 bg-stark-purple/10 border border-stark-purple/30 rounded text-xs text-stark-purple font-mono">MARK VII</div>
+                                <div class="px-3 py-1 bg-stark-gold/10 border border-stark-gold/30 rounded text-xs text-stark-gold font-mono">AVENGER</div>
+                            </div>
+                        </div>
+                        <div class="hidden md:block"></div>
+                    </div>
+                    <div class="absolute left-1/2 top-8 transform -translate-x-1/2 w-6 h-6 bg-stark-purple rounded-full border-4 border-stark-black shadow-lg shadow-stark-purple/50 hidden md:block z-10"></div>
+                </div>
+
+                <!-- Event 4: 2013 - Iron Legion -->
+                <div class="timeline-event relative">
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div class="hidden md:block"></div>
+                        <div class="timeline-content" data-aos="fade-left">
+                            <div class="inline-block px-4 py-2 bg-stark-gold/20 border border-stark-gold/50 rounded-full mb-4">
+                                <span class="text-stark-gold font-tech text-sm tracking-wider">2013</span>
+                            </div>
+                            <h3 class="text-4xl font-tech font-bold text-white mb-4">HOUSE PARTY PROTOCOL</h3>
+                            <p class="text-gray-400 leading-relaxed mb-6">
+                                42 Iron Man suits created. Extremis threat neutralized. Mark 42 - Prehensile Technology. Mandarin exposed as fraud. All suits destroyed in grand gesture. Arc Reactor removed from chest.
+                            </p>
+                            <div class="flex gap-3">
+                                <div class="px-3 py-1 bg-stark-gold/10 border border-stark-gold/30 rounded text-xs text-stark-gold font-mono">MARK XLII</div>
+                                <div class="px-3 py-1 bg-stark-red/10 border border-stark-red/30 rounded text-xs text-stark-red font-mono">42 SUITS</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute left-1/2 top-8 transform -translate-x-1/2 w-6 h-6 bg-stark-gold rounded-full border-4 border-stark-black shadow-lg shadow-stark-gold/50 hidden md:block z-10"></div>
+                </div>
+
+                <!-- Event 5: 2015 - Ultron -->
+                <div class="timeline-event relative">
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div class="timeline-content md:text-right" data-aos="fade-right">
+                            <div class="inline-block px-4 py-2 bg-stark-red/20 border border-stark-red/50 rounded-full mb-4">
+                                <span class="text-stark-red font-tech text-sm tracking-wider">2015</span>
+                            </div>
+                            <h3 class="text-4xl font-tech font-bold text-white mb-4">AGE OF ULTRON</h3>
+                            <p class="text-gray-400 leading-relaxed mb-6">
+                                Ultron AI creation backfires catastrophically. Hulkbuster deployed in Johannesburg. Sokovia raised and destroyed. Vision created. Team fractured. Guilt intensifies.
+                            </p>
+                            <div class="flex gap-3 md:justify-end">
+                                <div class="px-3 py-1 bg-stark-red/10 border border-stark-red/30 rounded text-xs text-stark-red font-mono">HULKBUSTER</div>
+                                <div class="px-3 py-1 bg-stark-purple/10 border border-stark-purple/30 rounded text-xs text-stark-purple font-mono">MARK XLV</div>
+                            </div>
+                        </div>
+                        <div class="hidden md:block"></div>
+                    </div>
+                    <div class="absolute left-1/2 top-8 transform -translate-x-1/2 w-6 h-6 bg-stark-red rounded-full border-4 border-stark-black shadow-lg shadow-stark-red/50 hidden md:block z-10"></div>
+                </div>
+
+                <!-- Event 6: 2016 - Civil War -->
+                <div class="timeline-event relative">
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div class="hidden md:block"></div>
+                        <div class="timeline-content" data-aos="fade-left">
+                            <div class="inline-block px-4 py-2 bg-stark-blue/20 border border-stark-blue/50 rounded-full mb-4">
+                                <span class="text-stark-blue font-tech text-sm tracking-wider">2016</span>
+                            </div>
+                            <h3 class="text-4xl font-tech font-bold text-white mb-4">CIVIL WAR</h3>
+                            <p class="text-gray-400 leading-relaxed mb-6">
+                                Sokovia Accords signed. Avengers split. Fight against Captain America. Parents' death truth revealed. Friendship with Steve Rogers shattered. Isolated and alone.
+                            </p>
+                            <div class="flex gap-3">
+                                <div class="px-3 py-1 bg-stark-blue/10 border border-stark-blue/30 rounded text-xs text-stark-blue font-mono">MARK XLVI</div>
+                                <div class="px-3 py-1 bg-stark-red/10 border border-stark-red/30 rounded text-xs text-stark-red font-mono">DIVIDED</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute left-1/2 top-8 transform -translate-x-1/2 w-6 h-6 bg-stark-blue rounded-full border-4 border-stark-black shadow-lg shadow-stark-blue/50 hidden md:block z-10"></div>
+                </div>
+
+                <!-- Event 7: 2017 - Homecoming -->
+                <div class="timeline-event relative">
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div class="timeline-content md:text-right" data-aos="fade-right">
+                            <div class="inline-block px-4 py-2 bg-stark-gold/20 border border-stark-gold/50 rounded-full mb-4">
+                                <span class="text-stark-gold font-tech text-sm tracking-wider">2017</span>
+                            </div>
+                            <h3 class="text-4xl font-tech font-bold text-white mb-4">MENTORSHIP</h3>
+                            <p class="text-gray-400 leading-relaxed mb-6">
+                                Recruiting and mentoring Peter Parker. Vulture threat contained. Iron Spider suit developed. Preparing next generation of heroes. Finding purpose in legacy.
+                            </p>
+                            <div class="flex gap-3 md:justify-end">
+                                <div class="px-3 py-1 bg-stark-gold/10 border border-stark-gold/30 rounded text-xs text-stark-gold font-mono">IRON SPIDER</div>
+                                <div class="px-3 py-1 bg-stark-blue/10 border border-stark-blue/30 rounded text-xs text-stark-blue font-mono">MENTOR</div>
+                            </div>
+                        </div>
+                        <div class="hidden md:block"></div>
+                    </div>
+                    <div class="absolute left-1/2 top-8 transform -translate-x-1/2 w-6 h-6 bg-stark-gold rounded-full border-4 border-stark-black shadow-lg shadow-stark-gold/50 hidden md:block z-10"></div>
+                </div>
+
+                <!-- Event 8: 2018 - Infinity War -->
+                <div class="timeline-event relative">
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div class="hidden md:block"></div>
+                        <div class="timeline-content" data-aos="fade-left">
+                            <div class="inline-block px-4 py-2 bg-stark-purple/20 border border-stark-purple/50 rounded-full mb-4">
+                                <span class="text-stark-purple font-tech text-sm tracking-wider">2018</span>
+                            </div>
+                            <h3 class="text-4xl font-tech font-bold text-white mb-4">INFINITY WAR</h3>
+                            <p class="text-gray-400 leading-relaxed mb-6">
+                                Thanos arrives. Mark L Bleeding Edge armor debuts. Battle on Titan. Peter Parker dusted. Half the universe erased. Stranded in space. Greatest failure. Darkest hour.
+                            </p>
+                            <div class="flex gap-3">
+                                <div class="px-3 py-1 bg-stark-purple/10 border border-stark-purple/30 rounded text-xs text-stark-purple font-mono">MARK L</div>
+                                <div class="px-3 py-1 bg-stark-red/10 border border-stark-red/30 rounded text-xs text-stark-red font-mono">THE SNAP</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute left-1/2 top-8 transform -translate-x-1/2 w-6 h-6 bg-stark-purple rounded-full border-4 border-stark-black shadow-lg shadow-stark-purple/50 hidden md:block z-10"></div>
+                </div>
+
+                <!-- Event 9: 2023 - Endgame -->
+                <div class="timeline-event relative">
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div class="timeline-content md:text-right" data-aos="fade-right">
+                            <div class="inline-block px-4 py-2 bg-stark-green/20 border border-stark-green/50 rounded-full mb-4">
+                                <span class="text-stark-green font-tech text-sm tracking-wider">2023</span>
+                            </div>
+                            <h3 class="text-4xl font-tech font-bold text-white mb-4">ENDGAME</h3>
+                            <p class="text-gray-400 leading-relaxed mb-6">
+                                Time Heist planned. Mark LXXXV - The Final Armor. All six Infinity Stones collected. Thanos defeated. Ultimate sacrifice. "I am Iron Man." Universe saved. Legacy eternal.
+                            </p>
+                            <div class="flex gap-3 md:justify-end">
+                                <div class="px-3 py-1 bg-stark-green/10 border border-stark-green/30 rounded text-xs text-stark-green font-mono">MARK LXXXV</div>
+                                <div class="px-3 py-1 bg-stark-gold/10 border border-stark-gold/30 rounded text-xs text-stark-gold font-mono">HERO</div>
+                            </div>
+                        </div>
+                        <div class="hidden md:block"></div>
+                    </div>
+                    <div class="absolute left-1/2 top-8 transform -translate-x-1/2 w-6 h-6 bg-stark-green rounded-full border-4 border-stark-black shadow-lg shadow-stark-green/50 hidden md:block z-10 animate-pulse"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-20 px-6 bg-gradient-to-b from-stark-bg to-stark-black">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-tech font-bold mb-4">BY THE NUMBERS</h2>
+                <p class="text-gray-400">Quantifying the legend</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="stat-card text-center p-8 bg-stark-bg border border-stark-blue/30 rounded-xl">
+                    <div class="text-5xl font-tech font-bold text-stark-blue mb-2" data-count="85">0</div>
+                    <div class="text-gray-400 text-sm font-mono">ARMOR DESIGNS</div>
+                </div>
+                <div class="stat-card text-center p-8 bg-stark-bg border border-stark-red/30 rounded-xl">
+                    <div class="text-5xl font-tech font-bold text-stark-red mb-2" data-count="15">0</div>
+                    <div class="text-gray-400 text-sm font-mono">YEARS ACTIVE</div>
+                </div>
+                <div class="stat-card text-center p-8 bg-stark-bg border border-stark-gold/30 rounded-xl">
+                    <div class="text-5xl font-tech font-bold text-stark-gold mb-2" data-count="7">0</div>
+                    <div class="text-gray-400 text-sm font-mono">AVENGERS MISSIONS</div>
+                </div>
+                <div class="stat-card text-center p-8 bg-stark-bg border border-stark-green/30 rounded-xl">
+                    <div class="text-5xl font-tech font-bold text-stark-green mb-2" data-count="1">0</div>
+                    <div class="text-gray-400 text-sm font-mono">ULTIMATE SACRIFICE</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-stark-bg border-t border-stark-blue/20 py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <div class="text-xl font-tech font-bold text-stark-blue mb-4">STARK INDUSTRIES</div>
+                    <p class="text-sm text-gray-500 mb-4">Advanced technology solutions for a better tomorrow.</p>
+                </div>
+                <div>
+                    <div class="text-sm font-tech text-stark-blue mb-4 tracking-wider">NAVIGATION</div>
+                    <div class="space-y-2">
+                        <a href="index.html" class="block text-sm text-gray-500 hover:text-stark-blue transition-colors">Home</a>
+                        <a href="armory.html" class="block text-sm text-gray-500 hover:text-stark-blue transition-colors">Armory</a>
+                        <a href="systems.html" class="block text-sm text-gray-500 hover:text-stark-blue transition-colors">Systems</a>
+                        <a href="protocols.html" class="block text-sm text-gray-500 hover:text-stark-blue transition-colors">Protocols</a>
+                        <a href="timeline.html" class="block text-sm text-gray-500 hover:text-stark-blue transition-colors">Timeline</a>
+                    </div>
+                </div>
+                <div>
+                    <div class="text-sm font-tech text-stark-blue mb-4 tracking-wider">SYSTEM STATUS</div>
+                    <div class="space-y-3">
+                        <div class="flex justify-between text-xs">
+                            <span class="text-gray-500">Power Grid</span>
+                            <span class="text-stark-green">ONLINE</span>
+                        </div>
+                        <div class="flex justify-between text-xs">
+                            <span class="text-gray-500">Defense Systems</span>
+                            <span class="text-stark-green">ACTIVE</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-stark-blue/10 pt-8 text-center">
+                <p class="text-xs font-mono text-gray-600">© 2024 STARK INDUSTRIES. CLASSIFIED. RESTRICTED ACCESS ONLY.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+    <script src="timeline.js"></script>
+</body>
+</html>

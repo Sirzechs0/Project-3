@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Specs | S.T.A.R.K. INDUSTRIES</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&family=Michroma&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        stark: {
+                            bg: '#0a0e1a',
+                            black: '#050505',
+                            red: '#e63946',
+                            redDark: '#9d0208',
+                            gold: '#fca311',
+                            blue: '#00d9ff',
+                            blueDim: 'rgba(0, 217, 255, 0.1)',
+                            purple: '#7209b7',
+                            green: '#06ffa5'
+                        }
+                    },
+                    fontFamily: {
+                        hud: ['Rajdhani', 'sans-serif'],
+                        mono: ['Share Tech Mono', 'monospace'],
+                        tech: ['Michroma', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-hud selection:bg-stark-red selection:text-white bg-stark-black text-white overflow-x-hidden">
+
+    <div class="cursor-dot"></div>
+    <div class="cursor-circle"></div>
+    <div class="hud-grid"></div>
+    <div id="particles-bg"></div>
+
+    <!-- Navigation -->
+    <nav id="main-nav" class="fixed w-full z-50 top-0 left-0 p-6 flex justify-between items-center bg-gradient-to-b from-stark-black via-stark-black/95 to-transparent backdrop-blur-sm">
+        <div class="text-2xl font-tech font-bold text-stark-blue tracking-widest border-l-4 border-stark-red pl-3 cursor-pointer hover-glow">
+            <a href="index.html">STARK<span class="text-white">IND</span></a>
+        </div>
+        
+        <div class="hidden md:flex space-x-8 text-sm font-hud tracking-widest text-gray-400 font-semibold">
+            <a href="index.html" class="nav-link relative">HOME</a>
+            <a href="armory.html" class="nav-link relative">ARMORY</a>
+            <a href="systems.html" class="nav-link relative">SYSTEMS</a>
+            <a href="protocols.html" class="nav-link relative">PROTOCOLS</a>
+            <a href="techspecs.html" class="nav-link active relative">TECH SPECS</a>
+        </div>
+
+        <div class="flex items-center gap-4">
+            <div class="w-24 h-1 bg-stark-blue/30 relative overflow-hidden">
+                <div class="power-bar absolute left-0 h-full bg-stark-blue"></div>
+            </div>
+        </div>
+
+        <button id="mobile-menu-toggle" class="md:hidden text-stark-blue">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-stark-black/98 backdrop-blur-xl z-40 hidden">
+        <div class="flex flex-col items-center justify-center h-full space-y-8">
+            <a href="index.html" class="mobile-nav-link text-3xl font-tech text-gray-400">HOME</a>
+            <a href="armory.html" class="mobile-nav-link text-3xl font-tech text-gray-400">ARMORY</a>
+            <a href="systems.html" class="mobile-nav-link text-3xl font-tech text-gray-400">SYSTEMS</a>
+            <a href="protocols.html" class="mobile-nav-link text-3xl font-tech text-gray-400">PROTOCOLS</a>
+            <a href="techspecs.html" class="mobile-nav-link text-3xl font-tech text-stark-blue">TECH SPECS</a>
+        </div>
+    </div>
+
+    <!-- Page Header -->
+    <header class="relative pt-32 pb-20 px-6 overflow-hidden">
+        <div class="container mx-auto relative z-10">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="h-px w-12 bg-gradient-to-r from-stark-red to-transparent"></div>
+                <span class="text-stark-red font-tech text-sm tracking-[0.3em]">TECHNICAL DATABASE</span>
+            </div>
+            <h1 class="text-6xl md:text-8xl font-tech font-bold mb-6 leading-none">
+                TECH SPECS
+            </h1>
+            <p class="text-gray-400 text-lg max-w-2xl">
+                Comprehensive technical specifications for the Mark LXXXV armor and core systems.
+            </p>
+        </div>
+    </header>
+
+    <!-- Arc Reactor Section -->
+    <section class="py-20 px-6">
+        <div class="container mx-auto max-w-7xl">
+            <div class="grid md:grid-cols-2 gap-16 items-center mb-32">
+                <div>
+                    <div class="inline-block px-4 py-2 bg-stark-blue/20 border border-stark-blue/50 rounded-full mb-6">
+                        <span class="text-stark-blue font-tech text-xs tracking-wider">POWER SOURCE</span>
+                    </div>
+                    <h2 class="text-5xl font-tech font-bold mb-6">ARC REACTOR</h2>
+                    <p class="text-gray-400 leading-relaxed mb-8">
+                        The Arc Reactor is a self-sustaining energy source based on electromagnetic coil compression. 
+                        Originally designed to prevent shrapnel from reaching Tony Stark's heart, it evolved into the 
+                        primary power source for all Iron Man armors.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="spec-item">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-stark-blue font-mono text-sm">Output Capacity</span>
+                                <span class="text-white font-bold">8 GJ/s</span>
+                            </div>
+                            <div class="w-full bg-stark-bg border border-stark-blue/30 h-2 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-stark-blue to-stark-green" style="width: 95%"></div>
+                            </div>
+                        </div>
+
+                        <div class="spec-item">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-stark-blue font-mono text-sm">Efficiency Rating</span>
+                                <span class="text-white font-bold">99.7%</span>
+                            </div>
+                            <div class="w-full bg-stark-bg border border-stark-blue/30 h-2 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-stark-blue to-stark-green" style="width: 99.7%"></div>
+                            </div>
+                        </div>
+
+                        <div class="spec-item">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-stark-blue font-mono text-sm">Core Temperature</span>
+                                <span class="text-white font-bold">15,000°C</span>
+                            </div>
+                            <div class="w-full bg-stark-bg border border-stark-red/30 h-2 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-stark-red to-stark-gold" style="width: 88%"></div>
+                            </div>
+                        </div>
+
+                        <div class="spec-item">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-stark-blue font-mono text-sm">Operational Lifespan</span>
+                                <span class="text-white font-bold">50+ Years</span>
+                            </div>
+                            <div class="w-full bg-stark-bg border border-stark-green/30 h-2 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-stark-green to-stark-blue" style="width: 100%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <div class="reactor-display w-full aspect-square bg-stark-bg border border-stark-blue/30 rounded-xl p-8 relative overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="reactor-core"></div>
+                        </div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="reactor-ring reactor-ring-1"></div>
+                            <div class="reactor-ring reactor-ring-2"></div>
+                            <div class="reactor-ring reactor-ring-3"></div>
+                        </div>
+                        <div class="absolute bottom-4 left-4 right-4">
+                            <div class="bg-stark-bg/80 backdrop-blur-sm border border-stark-blue/30 p-4 rounded">
+                                <div class="text-xs font-mono text-stark-blue mb-1">STATUS: OPTIMAL</div>
+                                <div class="text-xs font-mono text-gray-400">VIBRANIUM-PALLADIUM HYBRID CORE</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Repulsor Technology -->
+            <div class="grid md:grid-cols-2 gap-16 items-center mb-32">
+                <div class="order-2 md:order-1 relative">
+                    <div class="w-full bg-stark-bg border border-stark-gold/30 rounded-xl p-12 relative overflow-hidden">
+                        <div class="repulsor-diagram">
+                            <svg viewBox="0 0 400 400" class="w-full h-full">
+                                <!-- Central emitter -->
+                                <circle cx="200" cy="200" r="30" fill="none" stroke="#fca311" stroke-width="3" class="pulse-circle"/>
+                                <circle cx="200" cy="200" r="20" fill="#fca311" opacity="0.3"/>
+                                <circle cx="200" cy="200" r="10" fill="#fca311"/>
+                                
+                                <!-- Energy waves -->
+                                <circle cx="200" cy="200" r="60" fill="none" stroke="#00d9ff" stroke-width="2" opacity="0.6" class="energy-wave wave-1"/>
+                                <circle cx="200" cy="200" r="90" fill="none" stroke="#00d9ff" stroke-width="2" opacity="0.4" class="energy-wave wave-2"/>
+                                <circle cx="200" cy="200" r="120" fill="none" stroke="#00d9ff" stroke-width="2" opacity="0.2" class="energy-wave wave-3"/>
+                                
+                                <!-- Emitter channels -->
+                                <line x1="200" y1="170" x2="200" y2="80" stroke="#e63946" stroke-width="2"/>
+                                <line x1="230" y1="200" x2="320" y2="200" stroke="#e63946" stroke-width="2"/>
+                                <line x1="200" y1="230" x2="200" y2="320" stroke="#e63946" stroke-width="2"/>
+                                <line x1="170" y1="200" x2="80" y2="200" stroke="#e63946" stroke-width="2"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="order-1 md:order-2">
+                    <div class="inline-block px-4 py-2 bg-stark-gold/20 border border-stark-gold/50 rounded-full mb-6">
+                        <span class="text-stark-gold font-tech text-xs tracking-wider">WEAPONS SYSTEM</span>
+                    </div>
+                    <h2 class="text-5xl font-tech font-bold mb-6">REPULSOR TECH</h2>
+                    <p class="text-gray-400 leading-relaxed mb-8">
+                        Repulsor technology channels Arc Reactor energy through specialized emitters in the palms and chest. 
+                        Capable of both propulsion and offensive capabilities, with variable intensity output.
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-stark-bg border border-stark-blue/30 p-6 rounded-lg">
+                            <div class="text-3xl font-tech font-bold text-stark-blue mb-2">450 MW</div>
+                            <div class="text-xs text-gray-500 font-mono">Maximum Output</div>
+                        </div>
+                        <div class="bg-stark-bg border border-stark-gold/30 p-6 rounded-lg">
+                            <div class="text-3xl font-tech font-bold text-stark-gold mb-2">3.2 km</div>
+                            <div class="text-xs text-gray-500 font-mono">Effective Range</div>
+                        </div>
+                        <div class="bg-stark-bg border border-stark-red/30 p-6 rounded-lg">
+                            <div class="text-3xl font-tech font-bold text-stark-red mb-2">0.003s</div>
+                            <div class="text-xs text-gray-500 font-mono">Recharge Time</div>
+                        </div>
+                        <div class="bg-stark-bg border border-stark-green/30 p-6 rounded-lg">
+                            <div class="text-3xl font-tech font-bold text-stark-green mb-2">360°</div>
+                            <div class="text-xs text-gray-500 font-mono">Targeting Arc</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nanotech Section -->
+            <div class="grid md:grid-cols-2 gap-16 items-center mb-32">
+                <div>
+                    <div class="inline-block px-4 py-2 bg-stark-purple/20 border border-stark-purple/50 rounded-full mb-6">
+                        <span class="text-stark-purple font-tech text-xs tracking-wider">MATERIAL SCIENCE</span>
+                    </div>
+                    <h2 class="text-5xl font-tech font-bold mb-6">NANOTECH ARMOR</h2>
+                    <p class="text-gray-400 leading-relaxed mb-8">
+                        Bleeding Edge nanotechnology allows for near-instantaneous armor assembly and reconfiguration. 
+                        Billions of nanobots stored in housing unit, capable of forming any tool or weapon configuration.
+                    </p>
+
+                    <div class="space-y-4">
+                        <div class="feature-item bg-stark-bg border border-stark-blue/30 p-6 rounded-lg">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 bg-stark-blue/20 border border-stark-blue/50 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <span class="text-stark-blue font-tech text-xl">⚡</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-tech text-white mb-2">Rapid Deployment</h4>
+                                    <p class="text-sm text-gray-400">Full armor assembly in 0.8 seconds from housing unit activation</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="feature-item bg-stark-bg border border-stark-purple/30 p-6 rounded-lg">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 bg-stark-purple/20 border border-stark-purple/50 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <span class="text-stark-purple font-tech text-xl">◆</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-tech text-white mb-2">Adaptive Restructuring</h4>
+                                    <p class="text-sm text-gray-400">Real-time reconfiguration for weapons, shields, or repair functions</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="feature-item bg-stark-bg border border-stark-gold/30 p-6 rounded-lg">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 bg-stark-gold/20 border border-stark-gold/50 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <span class="text-stark-gold font-tech text-xl">✦</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-tech text-white mb-2">Self-Repair Protocol</h4>
+                                    <p class="text-sm text-gray-400">Autonomous damage assessment and repair at molecular level</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="feature-item bg-stark-bg border border-stark-red/30 p-6 rounded-lg">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 bg-stark-red/20 border border-stark-red/50 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <span class="text-stark-red font-tech text-xl">⬡</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-tech text-white mb-2">Vibranium Weave</h4>
+                                    <p class="text-sm text-gray-400">Nanoparticles infused with vibranium for enhanced durability</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <div class="w-full bg-stark-bg border border-stark-purple/30 rounded-xl p-12 relative overflow-hidden">
+                        <div class="nanotech-grid">
+                            <div class="grid grid-cols-8 gap-2">
+                                <!-- Generate nanobot cells -->
+                                <div class="nano-cell bg-stark-purple/20 border border-stark-purple/40 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/20 border border-stark-purple/40 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/20 border border-stark-purple/40 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/20 border border-stark-purple/40 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/20 border border-stark-purple/40 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/20 border border-stark-purple/40 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/20 border border-stark-purple/40 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/20 border border-stark-purple/40 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/20 border border-stark-purple/40 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/20 border border-stark-purple/40 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/20 border border-stark-purple/40 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/20 border border-stark-purple/40 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/20 border border-stark-purple/40 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/20 border border-stark-purple/40 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/20 border border-stark-purple/40 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/20 border border-stark-purple/40 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/30 border border-stark-purple/50 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/30 border border-stark-purple/50 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/30 border border-stark-purple/50 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/30 border border-stark-purple/50 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/30 border border-stark-purple/50 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/30 border border-stark-purple/50 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/30 border border-stark-purple/50 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/30 border border-stark-purple/50 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/30 border border-stark-purple/50 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/40 border border-stark-purple/60 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/40 border border-stark-purple/60 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/40 border border-stark-purple/60 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/40 border border-stark-purple/60 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/40 border border-stark-purple/60 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/40 border border-stark-purple/60 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/40 border border-stark-purple/60 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/30 border border-stark-purple/50 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/30 border border-stark-purple/50 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/30 border border-stark-purple/50 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/30 border border-stark-purple/50 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/30 border border-stark-purple/50 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/30 border border-stark-purple/50 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/30 border border-stark-purple/50 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/30 border border-stark-purple/50 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/20 border border-stark-purple/40 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/20 border border-stark-purple/40 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/20 border border-stark-purple/40 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/20 border border-stark-purple/40 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/20 border border-stark-purple/40 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/20 border border-stark-purple/40 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/20 border border-stark-purple/40 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/20 border border-stark-purple/40 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/20 border border-stark-purple/40 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/20 border border-stark-purple/40 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/20 border border-stark-purple/40 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/20 border border-stark-purple/40 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/20 border border-stark-purple/40 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/20 border border-stark-purple/40 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/20 border border-stark-purple/40 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/20 border border-stark-purple/40 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/20 border border-stark-purple/40 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/20 border border-stark-purple/40 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/20 border border-stark-purple/40 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/20 border border-stark-purple/40 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/20 border border-stark-purple/40 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/20 border border-stark-purple/40 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/20 border border-stark-purple/40 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/20 border border-stark-purple/40 aspect-square rounded"></div>
+                                <div class="nano-cell bg-stark-purple/20 border border-stark-purple/40 aspect-square rounded"></div>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-radial from-stark-purple/20 to-transparent"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comparison Table -->
+            <div class="mt-32">
+                <h2 class="text-4xl font-tech font-bold mb-12 text-center">ARMOR COMPARISON</h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full border-collapse">
+                        <thead>
+                            <tr class="border-b border-stark-blue/30">
+                                <th class="text-left p-4 font-tech text-stark-blue">SPECIFICATION</th>
+                                <th class="text-center p-4 font-tech text-gray-400">MARK I</th>
+                                <th class="text-center p-4 font-tech text-gray-400">MARK VII</th>
+                                <th class="text-center p-4 font-tech text-gray-400">MARK L</th>
+                                <th class="text-center p-4 font-tech text-stark-gold">MARK LXXXV</th>
+                            </tr>
+                        </thead>
+                        <tbody class="font-mono text-sm">
+                            <tr class="border-b border-gray-800 hover:bg-stark-bg/50 transition-colors">
+                                <td class="p-4 text-gray-400">Weight</td>
+                                <td class="p-4 text-center">800 kg</td>
+                                <td class="p-4 text-center">425 kg</td>
+                                <td class="p-4 text-center">180 kg</td>
+                                <td class="p-4 text-center text-stark-gold">145 kg</td>
+                            </tr>
+                            <tr class="border-b border-gray-800 hover:bg-stark-bg/50 transition-colors">
+                                <td class="p-4 text-gray-400">Max Flight Speed</td>
+                                <td class="p-4 text-center">N/A</td>
+                                <td class="p-4 text-center">Mach 1.8</td>
+                                <td class="p-4 text-center">Mach 5.2</td>
+                                <td class="p-4 text-center text-stark-gold">Mach 8.7</td>
+                            </tr>
+                            <tr class="border-b border-gray-800 hover:bg-stark-bg/50 transition-colors">
+                                <td class="p-4 text-gray-400">Power Output</td>
+                                <td class="p-4 text-center">0.2 GJ/s</td>
+                                <td class="p-4 text-center">1.5 GJ/s</td>
+                                <td class="p-4 text-center">5.8 GJ/s</td>
+                                <td class="p-4 text-center text-stark-gold">8.0 GJ/s</td>
+                            </tr>
+                            <tr class="border-b border-gray-800 hover:bg-stark-bg/50 transition-colors">
+                                <td class="p-4 text-gray-400">Deployment Time</td>
+                                <td class="p-4 text-center">15 min</td>
+                                <td class="p-4 text-center">3.2 sec</td>
+                                <td class="p-4 text-center">1.1 sec</td>
+                                <td class="p-4 text-center text-stark-gold">0.8 sec</td>
+                            </tr>
+                            <tr class="border-b border-gray-800 hover:bg-stark-bg/50 transition-colors">
+                                <td class="p-4 text-gray-400">Armor Material</td>
+                                <td class="p-4 text-center">Iron</td>
+                                <td class="p-4 text-center">Titanium Alloy</td>
+                                <td class="p-4 text-center">Nanotech</td>
+                                <td class="p-4 text-center text-stark-gold">Vibranium Nanotech</td>
+                            </tr>
+                            <tr class="hover:bg-stark-bg/50 transition-colors">
+                                <td class="p-4 text-gray-400">A.I. System</td>
+                                <td class="p-4 text-center">None</td>
+                                <td class="p-4 text-center">J.A.R.V.I.S.</td>
+                                <td class="p-4 text-center">F.R.I.D.A.Y.</td>
+                                <td class="p-4 text-center text-stark-gold">F.R.I.D.A.Y. v3.0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-stark-bg border-t border-stark-blue/20 py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <div class="text-xl font-tech font-bold text-stark-blue mb-4">STARK INDUSTRIES</div>
+                    <p class="text-sm text-gray-500 mb-4">Advanced technology solutions for a better tomorrow.</p>
+                </div>
+                <div>
+                    <div class="text-sm font-tech text-stark-blue mb-4 tracking-wider">NAVIGATION</div>
+                    <div class="space-y-2">
+                        <a href="index.html" class="block text-sm text-gray-500 hover:text-stark-blue transition-colors">Home</a>
+                        <a href="armory.html" class="block text-sm text-gray-500 hover:text-stark-blue transition-colors">Armory</a>
+                        <a href="systems.html" class="block text-sm text-gray-500 hover:text-stark-blue transition-colors">Systems</a>
+                        <a href="protocols.html" class="block text-sm text-gray-500 hover:text-stark-blue transition-colors">Protocols</a>
+                        <a href="techspecs.html" class="block text-sm text-gray-500 hover:text-stark-blue transition-colors">Tech Specs</a>
+                    </div>
+                </div>
+                <div>
+                    <div class="text-sm font-tech text-stark-blue mb-4 tracking-wider">SYSTEM STATUS</div>
+                    <div class="space-y-3">
+                        <div class="flex justify-between text-xs">
+                            <span class="text-gray-500">Power Grid</span>
+                            <span class="text-stark-green">ONLINE</span>
+                        </div>
+                        <div class="flex justify-between text-xs">
+                            <span class="text-gray-500">Defense Systems</span>
+                            <span class="text-stark-green">ACTIVE</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-stark-blue/10 pt-8 text-center">
+                <p class="text-xs font-mono text-gray-600">© 2024 STARK INDUSTRIES. CLASSIFIED. RESTRICTED ACCESS ONLY.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+    <script src="techspecs.js"></script>
+</body>
+</html>
