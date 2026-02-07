@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protocols | S.T.A.R.K. INDUSTRIES</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&family=Michroma&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        stark: {
+                            bg: '#0a0e1a',
+                            black: '#050505',
+                            red: '#e63946',
+                            redDark: '#9d0208',
+                            gold: '#fca311',
+                            blue: '#00d9ff',
+                            blueDim: 'rgba(0, 217, 255, 0.1)',
+                            purple: '#7209b7',
+                            green: '#06ffa5'
+                        }
+                    },
+                    fontFamily: {
+                        hud: ['Rajdhani', 'sans-serif'],
+                        mono: ['Share Tech Mono', 'monospace'],
+                        tech: ['Michroma', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-hud selection:bg-stark-red selection:text-white bg-stark-black text-white overflow-x-hidden">
+
+    <div class="cursor-dot"></div>
+    <div class="cursor-circle"></div>
+    <div class="hud-grid"></div>
+    <div id="particles-bg"></div>
+
+    <!-- Navigation -->
+    <nav id="main-nav" class="fixed w-full z-50 top-0 left-0 p-6 flex justify-between items-center bg-gradient-to-b from-stark-black via-stark-black/95 to-transparent backdrop-blur-sm">
+        <div class="text-2xl font-tech font-bold text-stark-blue tracking-widest border-l-4 border-stark-red pl-3 cursor-pointer hover-glow">
+            <a href="index.html">STARK<span class="text-white">IND</span></a>
+        </div>
+        
+        <div class="hidden md:flex space-x-8 text-sm font-hud tracking-widest text-gray-400 font-semibold">
+            <a href="index.html" class="nav-link relative">HOME</a>
+            <a href="armory.html" class="nav-link relative">ARMORY</a>
+            <a href="systems.html" class="nav-link relative">SYSTEMS</a>
+            <a href="protocols.html" class="nav-link active relative">PROTOCOLS</a>
+        </div>
+
+        <div class="flex items-center gap-4">
+            <div class="w-24 h-1 bg-stark-blue/30 relative overflow-hidden">
+                <div class="power-bar absolute left-0 h-full bg-stark-blue"></div>
+            </div>
+        </div>
+
+        <button id="mobile-menu-toggle" class="md:hidden text-stark-blue">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-stark-black/98 backdrop-blur-xl z-40 hidden">
+        <div class="flex flex-col items-center justify-center h-full space-y-8">
+            <a href="index.html" class="mobile-nav-link text-3xl font-tech text-gray-400">HOME</a>
+            <a href="armory.html" class="mobile-nav-link text-3xl font-tech text-gray-400">ARMORY</a>
+            <a href="systems.html" class="mobile-nav-link text-3xl font-tech text-gray-400">SYSTEMS</a>
+            <a href="protocols.html" class="mobile-nav-link text-3xl font-tech text-stark-blue">PROTOCOLS</a>
+        </div>
+    </div>
+
+    <!-- Page Header -->
+    <header class="relative pt-32 pb-20 px-6">
+        <div class="container mx-auto">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="h-px w-12 bg-gradient-to-r from-stark-red to-transparent"></div>
+                <span class="text-stark-red font-tech text-sm tracking-[0.3em]">EMERGENCY PROCEDURES</span>
+            </div>
+            <h1 class="text-6xl md:text-8xl font-tech font-bold mb-6 leading-none">
+                PROTOCOLS
+            </h1>
+            <p class="text-gray-400 text-lg max-w-2xl">
+                Automated response systems for crisis scenarios and tactical operations.
+            </p>
+        </div>
+    </header>
+
+    <!-- Protocols Grid -->
+    <section class="py-20 px-6">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                
+                <!-- House Party Protocol -->
+                <div class="protocol-card bg-gradient-to-br from-stark-bg to-stark-black border border-stark-blue/30 rounded-xl p-8 hover-lift">
+                    <div class="flex items-start justify-between mb-6">
+                        <div>
+                            <div class="text-xs text-stark-blue font-mono mb-2">PROTOCOL HPP</div>
+                            <h3 class="text-3xl font-tech font-bold text-white">House Party</h3>
+                        </div>
+                        <div class="w-12 h-12 rounded-full bg-stark-blue/20 border border-stark-blue flex items-center justify-center">
+                            <svg class="w-6 h-6 text-stark-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 mb-6">Remote activation and autonomous deployment of all Iron Man suits in extreme threat scenarios.</p>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-2 text-sm">
+                            <div class="w-1 h-1 bg-stark-green rounded-full"></div>
+                            <span class="text-gray-500">Activates all available armor units</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-sm">
+                            <div class="w-1 h-1 bg-stark-green rounded-full"></div>
+                            <span class="text-gray-500">Autonomous targeting and engagement</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-sm">
+                            <div class="w-1 h-1 bg-stark-green rounded-full"></div>
+                            <span class="text-gray-500">Self-destruct capability</span>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-6 border-t border-stark-blue/10">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-gray-600 font-mono">STATUS</span>
+                            <span class="text-xs text-stark-green font-mono">READY</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Clean Slate Protocol -->
+                <div class="protocol-card bg-gradient-to-br from-stark-bg to-stark-black border border-stark-red/30 rounded-xl p-8 hover-lift">
+                    <div class="flex items-start justify-between mb-6">
+                        <div>
+                            <div class="text-xs text-stark-red font-mono mb-2">PROTOCOL CSP</div>
+                            <h3 class="text-3xl font-tech font-bold text-white">Clean Slate</h3>
+                        </div>
+                        <div class="w-12 h-12 rounded-full bg-stark-red/20 border border-stark-red flex items-center justify-center">
+                            <svg class="w-6 h-6 text-stark-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 mb-6">Complete destruction of all Iron Man armor units. Irreversible termination protocol.</p>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-2 text-sm">
+                            <div class="w-1 h-1 bg-stark-red rounded-full"></div>
+                            <span class="text-gray-500">Destroys all armor technology</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-sm">
+                            <div class="w-1 h-1 bg-stark-red rounded-full"></div>
+                            <span class="text-gray-500">Eliminates data backups</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-sm">
+                            <div class="w-1 h-1 bg-stark-red rounded-full"></div>
+                            <span class="text-gray-500">Cannot be undone</span>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-6 border-t border-stark-red/10">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-gray-600 font-mono">STATUS</span>
+                            <span class="text-xs text-stark-red font-mono">STANDBY</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Avengers Protocol -->
+                <div class="protocol-card bg-gradient-to-br from-stark-bg to-stark-black border border-stark-gold/30 rounded-xl p-8 hover-lift">
+                    <div class="flex items-start justify-between mb-6">
+                        <div>
+                            <div class="text-xs text-stark-gold font-mono mb-2">PROTOCOL AVG</div>
+                            <h3 class="text-3xl font-tech font-bold text-white">Avengers</h3>
+                        </div>
+                        <div class="w-12 h-12 rounded-full bg-stark-gold/20 border border-stark-gold flex items-center justify-center">
+                            <svg class="w-6 h-6 text-stark-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 mb-6">Emergency assembly of Earth's Mightiest Heroes for global-level threats.</p>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-2 text-sm">
+                            <div class="w-1 h-1 bg-stark-gold rounded-full"></div>
+                            <span class="text-gray-500">Activates Avengers beacon</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-sm">
+                            <div class="w-1 h-1 bg-stark-gold rounded-full"></div>
+                            <span class="text-gray-500">Coordinates tactical response</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-sm">
+                            <div class="w-1 h-1 bg-stark-gold rounded-full"></div>
+                            <span class="text-gray-500">Global threat assessment</span>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-6 border-t border-stark-gold/10">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-gray-600 font-mono">STATUS</span>
+                            <span class="text-xs text-stark-green font-mono">ACTIVE</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Veronica Protocol -->
+                <div class="protocol-card bg-gradient-to-br from-stark-bg to-stark-black border border-stark-purple/30 rounded-xl p-8 hover-lift">
+                    <div class="flex items-start justify-between mb-6">
+                        <div>
+                            <div class="text-xs text-stark-purple font-mono mb-2">PROTOCOL VRN</div>
+                            <h3 class="text-3xl font-tech font-bold text-white">Veronica</h3>
+                        </div>
+                        <div class="w-12 h-12 rounded-full bg-stark-purple/20 border border-stark-purple flex items-center justify-center">
+                            <svg class="w-6 h-6 text-stark-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 mb-6">Orbital platform deployment for Hulkbuster armor. Emergency containment protocol.</p>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-2 text-sm">
+                            <div class="w-1 h-1 bg-stark-purple rounded-full"></div>
+                            <span class="text-gray-500">Satellite-based deployment</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-sm">
+                            <div class="w-1 h-1 bg-stark-purple rounded-full"></div>
+                            <span class="text-gray-500">Replacement parts delivery</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-sm">
+                            <div class="w-1 h-1 bg-stark-purple rounded-full"></div>
+                            <span class="text-gray-500">Real-time combat assistance</span>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-6 border-t border-stark-purple/10">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-gray-600 font-mono">STATUS</span>
+                            <span class="text-xs text-stark-green font-mono">ORBITAL</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Manual Activation Section -->
+            <div class="mt-20 bg-gradient-to-br from-stark-red/10 to-transparent border border-stark-red/30 rounded-xl p-12">
+                <div class="text-center max-w-3xl mx-auto">
+                    <div class="w-16 h-16 rounded-full bg-stark-red/20 border-2 border-stark-red flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-stark-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    </div>
+                    <h2 class="text-4xl font-tech font-bold mb-4">Manual Override</h2>
+                    <p class="text-gray-400 mb-8">Protocol activation requires biometric authorization and voice confirmation.</p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button class="holo-btn bg-stark-red/20 border-2 border-stark-red text-stark-red px-8 py-4 font-tech font-bold tracking-widest hover:bg-stark-red hover:text-white uppercase">
+                            AUTHORIZE
+                        </button>
+                        <button class="holo-btn-outline border-2 border-gray-600 text-gray-400 px-8 py-4 font-tech font-bold tracking-widest hover:bg-gray-600 hover:text-white uppercase">
+                            CANCEL
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-stark-bg border-t border-stark-blue/20 py-12 mt-20">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <div class="text-xl font-tech font-bold text-stark-blue mb-4">STARK INDUSTRIES</div>
+                    <p class="text-sm text-gray-500">Advanced technology solutions for a better tomorrow.</p>
+                </div>
+                <div>
+                    <div class="text-sm font-tech text-stark-blue mb-4 tracking-wider">NAVIGATION</div>
+                    <div class="space-y-2">
+                        <a href="index.html" class="block text-sm text-gray-500 hover:text-stark-blue transition-colors">Home</a>
+                        <a href="armory.html" class="block text-sm text-gray-500 hover:text-stark-blue transition-colors">Armory</a>
+                        <a href="systems.html" class="block text-sm text-gray-500 hover:text-stark-blue transition-colors">Systems</a>
+                        <a href="protocols.html" class="block text-sm text-gray-500 hover:text-stark-blue transition-colors">Protocols</a>
+                    </div>
+                </div>
+                <div>
+                    <div class="text-sm font-tech text-stark-blue mb-4 tracking-wider">SECURITY LEVEL</div>
+                    <div class="space-y-3">
+                        <div class="flex justify-between text-xs">
+                            <span class="text-gray-500">Classification</span>
+                            <span class="text-stark-red">TOP SECRET</span>
+                        </div>
+                        <div class="flex justify-between text-xs">
+                            <span class="text-gray-500">Clearance Required</span>
+                            <span class="text-stark-gold">LEVEL 10</span>
+                        </div>
+                        <div class="flex justify-between text-xs">
+                            <span class="text-gray-500">Protocols Active</span>
+                            <span class="text-stark-green">4/12</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-stark-blue/10 pt-8 text-center">
+                <p class="text-xs font-mono text-gray-600">© 2024 STARK INDUSTRIES. CLASSIFIED. RESTRICTED ACCESS ONLY.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

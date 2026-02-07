@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S.T.A.R.K. INDUSTRIES | Mark 85 Interface</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&family=Michroma&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        stark: {
+                            bg: '#0a0e1a',
+                            black: '#050505',
+                            red: '#e63946',
+                            redDark: '#9d0208',
+                            gold: '#fca311',
+                            blue: '#00d9ff',
+                            blueDim: 'rgba(0, 217, 255, 0.1)',
+                            purple: '#7209b7',
+                            green: '#06ffa5'
+                        }
+                    },
+                    fontFamily: {
+                        hud: ['Rajdhani', 'sans-serif'],
+                        mono: ['Share Tech Mono', 'monospace'],
+                        tech: ['Michroma', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-hud selection:bg-stark-red selection:text-white bg-stark-black text-white overflow-x-hidden">
+
+    <!-- Page Loader -->
+    <div id="page-loader" class="fixed inset-0 bg-stark-black z-[9999] flex items-center justify-center">
+        <div class="text-center">
+            <div class="loader-reactor mb-6"></div>
+            <div class="text-stark-blue font-tech text-xl tracking-[0.3em] mb-2">INITIALIZING</div>
+            <div class="flex justify-center gap-1">
+                <div class="loader-dot"></div>
+                <div class="loader-dot"></div>
+                <div class="loader-dot"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Particles Background -->
+    <div id="particles-bg"></div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-circle"></div>
+
+    <!-- HUD Grid -->
+    <div class="hud-grid"></div>
+
+    <!-- JARVIS Status Panel -->
+    <div id="jarvis-panel" class="fixed top-24 right-6 w-80 bg-stark-bg/80 backdrop-blur-xl border border-stark-blue/30 p-4 z-40 rounded-lg hidden">
+        <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-stark-green rounded-full animate-pulse"></div>
+                <span class="text-stark-blue font-tech text-xs tracking-wider">J.A.R.V.I.S. ONLINE</span>
+            </div>
+            <button id="jarvis-close" class="text-stark-blue/50 hover:text-stark-red transition-colors">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+        <div id="jarvis-message" class="text-sm text-gray-300 font-mono leading-relaxed mb-3">
+            All systems nominal. Awaiting input.
+        </div>
+        <div class="grid grid-cols-2 gap-2 text-xs">
+            <div class="bg-stark-blueDim border border-stark-blue/20 p-2 rounded">
+                <div class="text-stark-blue font-bold">98.7%</div>
+                <div class="text-gray-500">Power</div>
+            </div>
+            <div class="bg-stark-blueDim border border-stark-blue/20 p-2 rounded">
+                <div class="text-stark-green font-bold">OPTIMAL</div>
+                <div class="text-gray-500">Status</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="main-nav" class="fixed w-full z-50 top-0 left-0 p-6 flex justify-between items-center bg-gradient-to-b from-stark-black via-stark-black/95 to-transparent backdrop-blur-sm transition-all duration-300">
+        <div class="text-2xl font-tech font-bold text-stark-blue tracking-widest border-l-4 border-stark-red pl-3 cursor-pointer hover-glow">
+            <a href="index.html">STARK<span class="text-white">IND</span></a>
+        </div>
+        
+        <div class="hidden md:flex space-x-8 text-sm font-hud tracking-widest text-gray-400 font-semibold">
+            <a href="index.html" class="nav-link active relative">HOME</a>
+            <a href="armory.html" class="nav-link relative">ARMORY</a>
+            <a href="systems.html" class="nav-link relative">SYSTEMS</a>
+            <a href="protocols.html" class="nav-link relative">PROTOCOLS</a>
+        </div>
+
+        <div class="flex items-center gap-4">
+            <button id="jarvis-toggle" class="hidden md:block px-4 py-2 border border-stark-blue/50 text-stark-blue hover:bg-stark-blue/10 transition-all text-xs font-tech tracking-wider">
+                J.A.R.V.I.S.
+            </button>
+            <div class="w-24 h-1 bg-stark-blue/30 relative overflow-hidden">
+                <div class="power-bar absolute left-0 h-full bg-stark-blue"></div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="mobile-menu-toggle" class="md:hidden text-stark-blue">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-stark-black/98 backdrop-blur-xl z-40 hidden">
+        <div class="flex flex-col items-center justify-center h-full space-y-8">
+            <a href="index.html" class="mobile-nav-link text-3xl font-tech text-stark-blue">HOME</a>
+            <a href="armory.html" class="mobile-nav-link text-3xl font-tech text-gray-400">ARMORY</a>
+            <a href="systems.html" class="mobile-nav-link text-3xl font-tech text-gray-400">SYSTEMS</a>
+            <a href="protocols.html" class="mobile-nav-link text-3xl font-tech text-gray-400">PROTOCOLS</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="relative h-screen w-full overflow-hidden flex items-center justify-center">
+        <div id="hero-bg" class="absolute inset-0 z-0 opacity-30 bg-cover bg-center" 
+             style="background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2600&auto=format&fit=crop'); filter: brightness(0.4) saturate(1.2);">
+        </div>
+        
+        <!-- Animated Rings -->
+        <div class="absolute inset-0 flex items-center justify-center z-0">
+            <div class="hero-ring"></div>
+            <div class="hero-ring" style="animation-delay: -2s;"></div>
+            <div class="hero-ring" style="animation-delay: -4s;"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-4 max-w-6xl">
+            <div class="glitch-container mb-4">
+                <h2 id="hero-subtitle" class="text-stark-gold font-tech tracking-[0.5em] text-sm md:text-xl opacity-0">
+                    SYSTEM ONLINE
+                </h2>
+            </div>
+            
+            <h1 id="hero-title" class="text-6xl md:text-[10rem] font-black font-tech text-white mb-6 tracking-tighter uppercase opacity-0 leading-none" 
+                style="text-shadow: 0 0 40px rgba(230, 57, 70, 0.6), 0 0 80px rgba(230, 57, 70, 0.3);">
+                MARK <span class="text-stark-red hero-number">85</span>
+            </h1>
+            
+            <div class="typing-container mb-10">
+                <p id="hero-desc" class="text-gray-400 max-w-2xl mx-auto text-lg md:text-xl font-light opacity-0 font-mono">
+                    <span class="typing-text"></span>
+                    <span class="typing-cursor">|</span>
+                </p>
+            </div>
+            
+            <div class="flex gap-4 justify-center items-center opacity-0 hero-buttons">
+                <button class="holo-btn bg-stark-red/20 border-2 border-stark-red text-stark-red px-8 py-4 font-tech font-bold tracking-widest hover:bg-stark-red hover:text-white uppercase transition-all">
+                    <span class="flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        DEPLOY
+                    </span>
+                </button>
+                <button class="holo-btn-outline border-2 border-stark-blue text-stark-blue px-8 py-4 font-tech font-bold tracking-widest hover:bg-stark-blue hover:text-white uppercase transition-all">
+                    DIAGNOSTICS
+                </button>
+            </div>
+        </div>
+
+        <!-- HUD Corner Elements -->
+        <div class="hud-corner hud-corner-tl"></div>
+        <div class="hud-corner hud-corner-tr"></div>
+        <div class="hud-corner hud-corner-bl">
+            <div class="p-4">
+                <div class="text-xs text-stark-blue font-mono">LAT: 34.0259°N</div>
+                <div class="text-xs text-stark-blue font-mono">LNG: 118.7798°W</div>
+                <div class="text-xs text-stark-green font-mono mt-2">MALIBU, CA</div>
+            </div>
+        </div>
+        <div class="hud-corner hud-corner-br"></div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-10">
+            <div class="scroll-indicator">
+                <div class="scroll-dot"></div>
+            </div>
+            <div class="text-stark-blue text-xs font-mono mt-2 tracking-wider">SCROLL</div>
+        </div>
+    </header>
+
+    <!-- Stats Bar -->
+    <section class="py-8 bg-stark-bg/50 border-t border-b border-stark-blue/20">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="stat-item text-center">
+                    <div class="text-4xl font-tech text-stark-blue mb-2 counter" data-target="85">0</div>
+                    <div class="text-xs text-gray-500 uppercase tracking-wider">Mark Iterations</div>
+                </div>
+                <div class="stat-item text-center">
+                    <div class="text-4xl font-tech text-stark-gold mb-2"><span class="counter" data-target="150">0</span>GJ</div>
+                    <div class="text-xs text-gray-500 uppercase tracking-wider">Energy Output</div>
+                </div>
+                <div class="stat-item text-center">
+                    <div class="text-4xl font-tech text-stark-green mb-2"><span class="counter" data-target="20">0</span>ms</div>
+                    <div class="text-xs text-gray-500 uppercase tracking-wider">Deploy Time</div>
+                </div>
+                <div class="stat-item text-center">
+                    <div class="text-4xl font-tech text-stark-purple mb-2"><span class="counter" data-target="99">0</span>.9%</div>
+                    <div class="text-xs text-gray-500 uppercase tracking-wider">Efficiency</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Section -->
+    <section class="py-32 px-6 md:px-20 bg-stark-bg relative">
+        <div class="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            
+            <div class="assembly-trigger-1">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="h-px w-12 bg-gradient-to-r from-stark-gold to-transparent"></div>
+                    <span class="text-stark-gold font-tech text-sm tracking-[0.3em]">NANOTECHNOLOGY</span>
+                </div>
+                
+                <h3 class="text-5xl md:text-6xl font-tech font-bold mb-6 leading-tight">
+                    Fluid<br/>
+                    <span class="text-stark-blue">Integration</span>
+                </h3>
+                
+                <p class="text-gray-400 leading-relaxed mb-6 text-lg">
+                    The Mark 85 utilizes revolutionary nanobots that reside within the housing unit, establishing a seamless neural link upon activation.
+                </p>
+                
+                <div class="space-y-4 mb-8">
+                    <div class="flex items-start gap-3 tech-feature">
+                        <div class="w-8 h-8 rounded-full bg-stark-blue/20 border border-stark-blue flex items-center justify-center flex-shrink-0 mt-1">
+                            <svg class="w-4 h-4 text-stark-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <div>
+                            <div class="text-white font-semibold mb-1">Instantaneous Deployment</div>
+                            <div class="text-sm text-gray-500">Nanobot assembly in under 20 milliseconds</div>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3 tech-feature">
+                        <div class="w-8 h-8 rounded-full bg-stark-blue/20 border border-stark-blue flex items-center justify-center flex-shrink-0 mt-1">
+                            <svg class="w-4 h-4 text-stark-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <div>
+                            <div class="text-white font-semibold mb-1">Self-Repairing Structure</div>
+                            <div class="text-sm text-gray-500">Autonomous damage assessment and repair protocols</div>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3 tech-feature">
+                        <div class="w-8 h-8 rounded-full bg-stark-blue/20 border border-stark-blue flex items-center justify-center flex-shrink-0 mt-1">
+                            <svg class="w-4 h-4 text-stark-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <div>
+                            <div class="text-white font-semibold mb-1">Enhanced Energy Distribution</div>
+                            <div class="text-sm text-gray-500">Optimized power flow across all armor systems</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="stat-card border border-stark-blue/30 p-6 bg-gradient-to-br from-stark-blueDim to-transparent rounded-lg hover-lift">
+                        <div class="text-3xl font-tech text-stark-blue mb-2">150<span class="text-base">GJ</span></div>
+                        <div class="text-xs text-gray-400 uppercase tracking-wide">Energy Output</div>
+                        <div class="w-full h-1 bg-stark-blue/20 mt-3 rounded-full overflow-hidden">
+                            <div class="h-full bg-stark-blue w-[95%] rounded-full"></div>
+                        </div>
+                    </div>
+                    <div class="stat-card border border-stark-blue/30 p-6 bg-gradient-to-br from-stark-blueDim to-transparent rounded-lg hover-lift">
+                        <div class="text-3xl font-tech text-stark-blue mb-2">0.02<span class="text-base">s</span></div>
+                        <div class="text-xs text-gray-400 uppercase tracking-wide">Deploy Time</div>
+                        <div class="w-full h-1 bg-stark-blue/20 mt-3 rounded-full overflow-hidden">
+                            <div class="h-full bg-stark-blue w-[98%] rounded-full"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="assembly-trigger-image relative">
+                <div class="scan-container border-2 border-stark-blue/30 p-3 relative rounded-xl overflow-hidden group">
+                    <!-- Corner Brackets -->
+                    <div class="scan-bracket scan-bracket-tl"></div>
+                    <div class="scan-bracket scan-bracket-tr"></div>
+                    <div class="scan-bracket scan-bracket-bl"></div>
+                    <div class="scan-bracket scan-bracket-br"></div>
+                    
+                    <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800&q=80" 
+                         alt="Arc Reactor Technology" 
+                         class="w-full h-auto rounded-lg grayscale contrast-125 brightness-90 group-hover:grayscale-0 transition-all duration-700">
+                    
+                    <div class="scan-line"></div>
+                    
+                    <!-- Info Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-stark-black/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6 rounded-xl">
+                        <div>
+                            <div class="text-stark-blue font-tech text-sm mb-2">ARC REACTOR MK-III</div>
+                            <div class="text-white text-xl font-bold mb-1">Miniature Fusion Core</div>
+                            <div class="text-gray-400 text-sm">3 GJ/s sustained output</div>
+                        </div>
+                    </div>
+                    
+                    <div class="absolute bottom-4 right-4 text-xs font-mono text-stark-blue bg-stark-black/70 backdrop-blur-sm px-3 py-1 rounded border border-stark-blue/30">
+                        IMG_894_ARC_REACTOR
+                    </div>
+                </div>
+
+                <!-- Floating Tech Card -->
+                <div class="absolute -bottom-8 -left-8 bg-stark-bg border border-stark-gold/50 p-4 rounded-lg hidden lg:block floating-card">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-full bg-stark-gold/20 border border-stark-gold flex items-center justify-center">
+                            <svg class="w-6 h-6 text-stark-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </div>
+                        <div>
+                            <div class="text-stark-gold font-tech text-sm">ACTIVE</div>
+                            <div class="text-xs text-gray-500">Arc Reactor</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Armory Preview Section -->
+    <section class="py-32 bg-stark-black relative overflow-hidden">
+        <!-- Background Tech Pattern -->
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%2300d9ff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-20">
+                <div class="inline-block mb-4">
+                    <div class="flex items-center gap-3">
+                        <div class="h-px w-8 bg-stark-red"></div>
+                        <span class="text-stark-red font-tech text-sm tracking-[0.3em]">MARK SERIES</span>
+                        <div class="h-px w-8 bg-stark-red"></div>
+                    </div>
+                </div>
+                <h2 class="text-5xl md:text-6xl font-tech text-white mb-4 assembly-header">ARMORY DATABASE</h2>
+                <div class="w-32 h-1 bg-gradient-to-r from-transparent via-stark-red to-transparent mx-auto assembly-header"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Suit Card 1 -->
+                <div class="suit-card group bg-gradient-to-br from-stark-bg to-stark-black border border-gray-800 p-8 hover:border-stark-gold transition-all duration-500 relative overflow-hidden rounded-xl">
+                    <div class="absolute top-0 right-0 p-4 opacity-20 text-6xl font-tech font-black text-stark-gold group-hover:opacity-40 transition-opacity">01</div>
+                    
+                    <div class="h-56 bg-gradient-to-br from-gray-900 to-stark-black mb-6 flex items-center justify-center border border-gray-800 group-hover:border-stark-blue/50 transition-all rounded-lg relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1589254065878-42c9da997008?w=500&q=80" 
+                             alt="Mark V Suitcase Armor" 
+                             class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-stark-black via-transparent to-transparent"></div>
+                    </div>
+                    
+                    <div class="flex items-center justify-between mb-3">
+                        <h4 class="text-2xl font-tech text-white group-hover:text-stark-blue transition-colors">Mark V</h4>
+                        <div class="w-2 h-2 rounded-full bg-stark-green animate-pulse"></div>
+                    </div>
+                    
+                    <p class="text-sm text-gray-500 mb-6 leading-relaxed">Portable Suitcase Armor. Emergency deployment protocols active.</p>
+                    
+                    <div class="flex gap-2">
+                        <div class="px-3 py-1 bg-stark-red/10 border border-stark-red/30 rounded text-xs text-stark-red font-mono">PORTABLE</div>
+                        <div class="px-3 py-1 bg-stark-blue/10 border border-stark-blue/30 rounded text-xs text-stark-blue font-mono">EMERGENCY</div>
+                    </div>
+                </div>
+
+                <!-- Suit Card 2 -->
+                <div class="suit-card group bg-gradient-to-br from-stark-bg to-stark-black border border-gray-800 p-8 hover:border-stark-gold transition-all duration-500 relative overflow-hidden rounded-xl">
+                    <div class="absolute top-0 right-0 p-4 opacity-20 text-6xl font-tech font-black text-stark-gold group-hover:opacity-40 transition-opacity">02</div>
+                    
+                    <div class="h-56 bg-gradient-to-br from-gray-900 to-stark-black mb-6 flex items-center justify-center border border-gray-800 group-hover:border-stark-blue/50 transition-all rounded-lg relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&q=80" 
+                             alt="Mark XLIV Hulkbuster" 
+                             class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-stark-black via-transparent to-transparent"></div>
+                    </div>
+                    
+                    <div class="flex items-center justify-between mb-3">
+                        <h4 class="text-2xl font-tech text-white group-hover:text-stark-blue transition-colors">Mark XLIV</h4>
+                        <div class="w-2 h-2 rounded-full bg-stark-green animate-pulse"></div>
+                    </div>
+                    
+                    <p class="text-sm text-gray-500 mb-6 leading-relaxed">"Hulkbuster". Heavy artillery support. Satellite verification required.</p>
+                    
+                    <div class="flex gap-2">
+                        <div class="px-3 py-1 bg-stark-red/10 border border-stark-red/30 rounded text-xs text-stark-red font-mono">HEAVY</div>
+                        <div class="px-3 py-1 bg-stark-gold/10 border border-stark-gold/30 rounded text-xs text-stark-gold font-mono">COMBAT</div>
+                    </div>
+                </div>
+
+                <!-- Suit Card 3 -->
+                <div class="suit-card group bg-gradient-to-br from-stark-bg to-stark-black border border-gray-800 p-8 hover:border-stark-gold transition-all duration-500 relative overflow-hidden rounded-xl">
+                    <div class="absolute top-0 right-0 p-4 opacity-20 text-6xl font-tech font-black text-stark-gold group-hover:opacity-40 transition-opacity">03</div>
+                    
+                    <div class="h-56 bg-gradient-to-br from-gray-900 to-stark-black mb-6 flex items-center justify-center border border-gray-800 group-hover:border-stark-blue/50 transition-all rounded-lg relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1601814933824-fd0b574dd592?w=500&q=80" 
+                             alt="Mark LXXXV Nanotech" 
+                             class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-stark-black via-transparent to-transparent"></div>
+                    </div>
+                    
+                    <div class="flex items-center justify-between mb-3">
+                        <h4 class="text-2xl font-tech text-white group-hover:text-stark-blue transition-colors">Mark LXXXV</h4>
+                        <div class="w-2 h-2 rounded-full bg-stark-green animate-pulse"></div>
+                    </div>
+                    
+                    <p class="text-sm text-gray-500 mb-6 leading-relaxed">The Pinnacle. Nanotech fusion. Enhanced durability and energy projection.</p>
+                    
+                    <div class="flex gap-2">
+                        <div class="px-3 py-1 bg-stark-purple/10 border border-stark-purple/30 rounded text-xs text-stark-purple font-mono">NANOTECH</div>
+                        <div class="px-3 py-1 bg-stark-green/10 border border-stark-green/30 rounded text-xs text-stark-green font-mono">PINNACLE</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-16">
+                <a href="armory.html" class="inline-block holo-btn bg-transparent border-2 border-stark-blue text-stark-blue px-12 py-4 font-tech font-bold tracking-widest hover:bg-stark-blue hover:text-white uppercase transition-all">
+                    VIEW FULL ARMORY
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-stark-bg border-t border-stark-blue/20 py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <div class="text-xl font-tech font-bold text-stark-blue mb-4">STARK INDUSTRIES</div>
+                    <p class="text-sm text-gray-500 mb-4">Advanced technology solutions for a better tomorrow.</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 border border-stark-blue/30 rounded flex items-center justify-center hover:border-stark-blue hover:bg-stark-blue/10 transition-all">
+                            <span class="text-stark-blue text-xs">SI</span>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <div class="text-sm font-tech text-stark-blue mb-4 tracking-wider">NAVIGATION</div>
+                    <div class="space-y-2">
+                        <a href="index.html" class="block text-sm text-gray-500 hover:text-stark-blue transition-colors">Home</a>
+                        <a href="armory.html" class="block text-sm text-gray-500 hover:text-stark-blue transition-colors">Armory</a>
+                        <a href="systems.html" class="block text-sm text-gray-500 hover:text-stark-blue transition-colors">Systems</a>
+                        <a href="protocols.html" class="block text-sm text-gray-500 hover:text-stark-blue transition-colors">Protocols</a>
+                    </div>
+                </div>
+                <div>
+                    <div class="text-sm font-tech text-stark-blue mb-4 tracking-wider">SYSTEM STATUS</div>
+                    <div class="space-y-3">
+                        <div class="flex justify-between text-xs">
+                            <span class="text-gray-500">Power Grid</span>
+                            <span class="text-stark-green">ONLINE</span>
+                        </div>
+                        <div class="flex justify-between text-xs">
+                            <span class="text-gray-500">Defense Systems</span>
+                            <span class="text-stark-green">ACTIVE</span>
+                        </div>
+                        <div class="flex justify-between text-xs">
+                            <span class="text-gray-500">J.A.R.V.I.S.</span>
+                            <span class="text-stark-green">OPERATIONAL</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-stark-blue/10 pt-8 text-center">
+                <p class="text-xs font-mono text-gray-600">© 2024 STARK INDUSTRIES. CLASSIFIED. RESTRICTED ACCESS ONLY.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <script src="script.js"></script>
+</body>
+</html>

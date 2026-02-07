@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Armory Database | S.T.A.R.K. INDUSTRIES</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&family=Michroma&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        stark: {
+                            bg: '#0a0e1a',
+                            black: '#050505',
+                            red: '#e63946',
+                            redDark: '#9d0208',
+                            gold: '#fca311',
+                            blue: '#00d9ff',
+                            blueDim: 'rgba(0, 217, 255, 0.1)',
+                            purple: '#7209b7',
+                            green: '#06ffa5'
+                        }
+                    },
+                    fontFamily: {
+                        hud: ['Rajdhani', 'sans-serif'],
+                        mono: ['Share Tech Mono', 'monospace'],
+                        tech: ['Michroma', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-hud selection:bg-stark-red selection:text-white bg-stark-black text-white overflow-x-hidden">
+
+    <div class="cursor-dot"></div>
+    <div class="cursor-circle"></div>
+    <div class="hud-grid"></div>
+    <div id="particles-bg"></div>
+
+    <!-- Navigation -->
+    <nav id="main-nav" class="fixed w-full z-50 top-0 left-0 p-6 flex justify-between items-center bg-gradient-to-b from-stark-black via-stark-black/95 to-transparent backdrop-blur-sm">
+        <div class="text-2xl font-tech font-bold text-stark-blue tracking-widest border-l-4 border-stark-red pl-3 cursor-pointer hover-glow">
+            <a href="index.html">STARK<span class="text-white">IND</span></a>
+        </div>
+        
+        <div class="hidden md:flex space-x-8 text-sm font-hud tracking-widest text-gray-400 font-semibold">
+            <a href="index.html" class="nav-link relative">HOME</a>
+            <a href="armory.html" class="nav-link active relative">ARMORY</a>
+            <a href="systems.html" class="nav-link relative">SYSTEMS</a>
+            <a href="protocols.html" class="nav-link relative">PROTOCOLS</a>
+        </div>
+
+        <div class="flex items-center gap-4">
+            <div class="w-24 h-1 bg-stark-blue/30 relative overflow-hidden">
+                <div class="power-bar absolute left-0 h-full bg-stark-blue"></div>
+            </div>
+        </div>
+
+        <button id="mobile-menu-toggle" class="md:hidden text-stark-blue">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-stark-black/98 backdrop-blur-xl z-40 hidden">
+        <div class="flex flex-col items-center justify-center h-full space-y-8">
+            <a href="index.html" class="mobile-nav-link text-3xl font-tech text-gray-400">HOME</a>
+            <a href="armory.html" class="mobile-nav-link text-3xl font-tech text-stark-blue">ARMORY</a>
+            <a href="systems.html" class="mobile-nav-link text-3xl font-tech text-gray-400">SYSTEMS</a>
+            <a href="protocols.html" class="mobile-nav-link text-3xl font-tech text-gray-400">PROTOCOLS</a>
+        </div>
+    </div>
+
+    <!-- Page Header -->
+    <header class="relative pt-32 pb-20 px-6 overflow-hidden">
+        <div class="container mx-auto relative z-10">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="h-px w-12 bg-gradient-to-r from-stark-red to-transparent"></div>
+                <span class="text-stark-red font-tech text-sm tracking-[0.3em]">MARK SERIES DATABASE</span>
+            </div>
+            <h1 class="text-6xl md:text-8xl font-tech font-bold mb-6 leading-none">
+                ARMORY
+            </h1>
+            <p class="text-gray-400 text-lg max-w-2xl">
+                Complete catalog of all Iron Man armor iterations. From prototype to pinnacle.
+            </p>
+        </div>
+        
+        <div class="absolute top-0 right-0 w-1/2 h-full opacity-10">
+            <div class="absolute inset-0" style="background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2574'); background-size: cover; background-position: center; filter: grayscale(100%) brightness(0.5);"></div>
+        </div>
+    </header>
+
+    <!-- Filter Controls -->
+    <section class="py-8 px-6 bg-stark-bg/95 border-y border-stark-blue/20 sticky top-20 z-30 backdrop-blur-xl shadow-lg">
+        <div class="container mx-auto">
+            <div class="flex flex-wrap gap-4 items-center justify-between">
+                <div class="flex gap-2 flex-wrap">
+                    <button class="filter-btn active" data-filter="all">ALL MARKS</button>
+                    <button class="filter-btn" data-filter="stealth">STEALTH</button>
+                    <button class="filter-btn" data-filter="heavy">HEAVY</button>
+                    <button class="filter-btn" data-filter="nanotech">NANOTECH</button>
+                    <button class="filter-btn" data-filter="specialized">SPECIALIZED</button>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-stark-blue text-sm font-tech">VIEW:</span>
+                    <button id="grid-view" class="view-toggle active">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                    </button>
+                    <button id="list-view" class="view-toggle">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Suits Grid -->
+    <section class="py-20 px-6">
+        <div class="container mx-auto">
+            <div id="suits-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Mark I -->
+                <div class="armor-card" data-category="specialized">
+                    <div class="armor-card-inner">
+                        <div class="armor-image-container">
+                            <div class="armor-number">I</div>
+                            <img src="https://cdna.artstation.com/p/assets/images/images/028/987/356/large/zackarias-vinterhed-as-01.jpg?1596114296" 
+                                 alt="Mark I Armor" 
+                                 class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity">
+                            <div class="absolute inset-0 bg-gradient-to-t from-stark-black via-transparent to-transparent"></div>
+                        </div>
+                        <div class="armor-content">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-2xl font-tech text-white">Mark I</h3>
+                                <div class="status-badge bg-stark-gold/20 text-stark-gold">PROTOTYPE</div>
+                            </div>
+                            <p class="text-sm text-gray-400 mb-4">Cave-forged survival armor. The beginning of everything.</p>
+                            <div class="armor-stats">
+                                <div class="stat">
+                                    <span class="label">POWER</span>
+                                    <div class="bar"><div style="width: 25%"></div></div>
+                                </div>
+                                <div class="stat">
+                                    <span class="label">SPEED</span>
+                                    <div class="bar"><div style="width: 15%"></div></div>
+                                </div>
+                                <div class="stat">
+                                    <span class="label">DEFENSE</span>
+                                    <div class="bar"><div style="width: 45%"></div></div>
+                                </div>
+                            </div>
+                            <div class="flex gap-2 mt-4">
+                                <span class="tag">IRON</span>
+                                <span class="tag">FLAME</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mark III -->
+                <div class="armor-card" data-category="specialized">
+                    <div class="armor-card-inner">
+                        <div class="armor-image-container">
+                            <div class="armor-number">III</div>
+                            <img src="https://wallpapers.com/images/high/iron-man-mark-3-qwi5yb5jdm62uz7q.webp" alt="Mark III" class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity"><div class="absolute inset-0 bg-gradient-to-t from-stark-black via-transparent to-transparent"></div>
+                        </div>
+                        <div class="armor-content">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-2xl font-tech text-white">Mark III</h3>
+                                <div class="status-badge bg-stark-green/20 text-stark-green">CLASSIC</div>
+                            </div>
+                            <p class="text-sm text-gray-400 mb-4">First fully functional suit with signature red and gold.</p>
+                            <div class="armor-stats">
+                                <div class="stat">
+                                    <span class="label">POWER</span>
+                                    <div class="bar"><div style="width: 65%"></div></div>
+                                </div>
+                                <div class="stat">
+                                    <span class="label">SPEED</span>
+                                    <div class="bar"><div style="width: 70%"></div></div>
+                                </div>
+                                <div class="stat">
+                                    <span class="label">DEFENSE</span>
+                                    <div class="bar"><div style="width: 60%"></div></div>
+                                </div>
+                            </div>
+                            <div class="flex gap-2 mt-4">
+                                <span class="tag">REPULSOR</span>
+                                <span class="tag">FLIGHT</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mark V -->
+                <div class="armor-card" data-category="specialized">
+                    <div class="armor-card-inner">
+                        <div class="armor-image-container">
+                            <div class="armor-number">V</div>
+                            <img src="https://i.pinimg.com/736x/d2/b1/59/d2b15971a1202395c0a949f9ce34ed55.jpg" alt="Mark V" class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity"><div class="absolute inset-0 bg-gradient-to-t from-stark-black via-transparent to-transparent"></div>
+                        </div>
+                        <div class="armor-content">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-2xl font-tech text-white">Mark V</h3>
+                                <div class="status-badge bg-stark-blue/20 text-stark-blue">PORTABLE</div>
+                            </div>
+                            <p class="text-sm text-gray-400 mb-4">Suitcase armor for rapid emergency deployment.</p>
+                            <div class="armor-stats">
+                                <div class="stat">
+                                    <span class="label">POWER</span>
+                                    <div class="bar"><div style="width: 50%"></div></div>
+                                </div>
+                                <div class="stat">
+                                    <span class="label">SPEED</span>
+                                    <div class="bar"><div style="width: 55%"></div></div>
+                                </div>
+                                <div class="stat">
+                                    <span class="label">DEFENSE</span>
+                                    <div class="bar"><div style="width: 40%"></div></div>
+                                </div>
+                            </div>
+                            <div class="flex gap-2 mt-4">
+                                <span class="tag">COMPACT</span>
+                                <span class="tag">QUICK</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mark VII -->
+                <div class="armor-card" data-category="specialized">
+                    <div class="armor-card-inner">
+                        <div class="armor-image-container">
+                            <div class="armor-number">VII</div>
+                            <img src="https://i.pinimg.com/736x/d2/b1/59/d2b15971a1202395c0a949f9ce34ed55.jpg" alt="Mark VII" class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity"><div class="absolute inset-0 bg-gradient-to-t from-stark-black via-transparent to-transparent"></div>
+                        </div>
+                        <div class="armor-content">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-2xl font-tech text-white">Mark VII</h3>
+                                <div class="status-badge bg-stark-green/20 text-stark-green">AVENGER</div>
+                            </div>
+                            <p class="text-sm text-gray-400 mb-4">Battle of New York. Auto-assembly capability.</p>
+                            <div class="armor-stats">
+                                <div class="stat">
+                                    <span class="label">POWER</span>
+                                    <div class="bar"><div style="width: 75%"></div></div>
+                                </div>
+                                <div class="stat">
+                                    <span class="label">SPEED</span>
+                                    <div class="bar"><div style="width: 80%"></div></div>
+                                </div>
+                                <div class="stat">
+                                    <span class="label">DEFENSE</span>
+                                    <div class="bar"><div style="width: 70%"></div></div>
+                                </div>
+                            </div>
+                            <div class="flex gap-2 mt-4">
+                                <span class="tag">AUTO-ASSEMBLE</span>
+                                <span class="tag">MISSILES</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mark XV (Sneaky) -->
+                <div class="armor-card" data-category="stealth">
+                    <div class="armor-card-inner">
+                        <div class="armor-image-container">
+                            <div class="armor-number">XV</div>
+                            <img src="https://www.gamersdecide.com/sites/default/files/styles/responsive_image_512xauto/public/authors/u153867/mark15.jpg?itok=VtDCidC6" alt="Mark XV" class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity"><div class="absolute inset-0 bg-gradient-to-t from-stark-black via-transparent to-transparent"></div>
+                        </div>
+                        <div class="armor-content">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-2xl font-tech text-white">Mark XV</h3>
+                                <div class="status-badge bg-stark-purple/20 text-stark-purple">STEALTH</div>
+                            </div>
+                            <p class="text-sm text-gray-400 mb-4">"Sneaky" - Camouflage and stealth operations.</p>
+                            <div class="armor-stats">
+                                <div class="stat">
+                                    <span class="label">POWER</span>
+                                    <div class="bar"><div style="width: 60%"></div></div>
+                                </div>
+                                <div class="stat">
+                                    <span class="label">SPEED</span>
+                                    <div class="bar"><div style="width: 85%"></div></div>
+                                </div>
+                                <div class="stat">
+                                    <span class="label">DEFENSE</span>
+                                    <div class="bar"><div style="width: 55%"></div></div>
+                                </div>
+                            </div>
+                            <div class="flex gap-2 mt-4">
+                                <span class="tag">CAMO</span>
+                                <span class="tag">RECON</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mark XLIV (Hulkbuster) -->
+                <div class="armor-card" data-category="heavy">
+                    <div class="armor-card-inner">
+                        <div class="armor-image-container">
+                            <div class="armor-number">XLIV</div>
+                            <img src="https://wallpapercave.com/wp/wp8255985.jpg" alt="Mark XLIV Hulkbuster" class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity"><div class="absolute inset-0 bg-gradient-to-t from-stark-black via-transparent to-transparent"></div>
+                        </div>
+                        <div class="armor-content">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-2xl font-tech text-white">Mark XLIV</h3>
+                                <div class="status-badge bg-stark-red/20 text-stark-red">HEAVY</div>
+                            </div>
+                            <p class="text-sm text-gray-400 mb-4">Hulkbuster. Maximum firepower and durability.</p>
+                            <div class="armor-stats">
+                                <div class="stat">
+                                    <span class="label">POWER</span>
+                                    <div class="bar"><div style="width: 95%"></div></div>
+                                </div>
+                                <div class="stat">
+                                    <span class="label">SPEED</span>
+                                    <div class="bar"><div style="width: 45%"></div></div>
+                                </div>
+                                <div class="stat">
+                                    <span class="label">DEFENSE</span>
+                                    <div class="bar"><div style="width: 100%"></div></div>
+                                </div>
+                            </div>
+                            <div class="flex gap-2 mt-4">
+                                <span class="tag">TITAN</span>
+                                <span class="tag">ARTILLERY</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mark L -->
+                <div class="armor-card" data-category="nanotech">
+                    <div class="armor-card-inner">
+                        <div class="armor-image-container">
+                            <div class="armor-number">L</div>
+                            <img src="https://cdn.shopify.com/s/files/1/0727/8355/products/12b97e9b-fbc4-4bed-bb1a-aa2f90e74109_1.jpg?v=1650033931" alt="Mark L" class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity"><div class="absolute inset-0 bg-gradient-to-t from-stark-black via-transparent to-transparent"></div>
+                        </div>
+                        <div class="armor-content">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-2xl font-tech text-white">Mark L</h3>
+                                <div class="status-badge bg-stark-purple/20 text-stark-purple">NANOTECH</div>
+                            </div>
+                            <p class="text-sm text-gray-400 mb-4">First full nanotech suit. Infinity War configuration.</p>
+                            <div class="armor-stats">
+                                <div class="stat">
+                                    <span class="label">POWER</span>
+                                    <div class="bar"><div style="width: 90%"></div></div>
+                                </div>
+                                <div class="stat">
+                                    <span class="label">SPEED</span>
+                                    <div class="bar"><div style="width: 92%"></div></div>
+                                </div>
+                                <div class="stat">
+                                    <span class="label">DEFENSE</span>
+                                    <div class="bar"><div style="width: 85%"></div></div>
+                                </div>
+                            </div>
+                            <div class="flex gap-2 mt-4">
+                                <span class="tag">NANO</span>
+                                <span class="tag">ADAPTIVE</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mark LXXXV -->
+                <div class="armor-card" data-category="nanotech">
+                    <div class="armor-card-inner">
+                        <div class="armor-image-container">
+                            <div class="armor-number">LXXXV</div>
+                            <img src="https://wallpapers.com/images/hd/iron-man-mark-85-full-power-711msc0qaazwp62t.jpg" alt="Mark LXXXV" class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity"><div class="absolute inset-0 bg-gradient-to-t from-stark-black via-transparent to-transparent"></div>
+                        </div>
+                        <div class="armor-content">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-2xl font-tech text-white">Mark LXXXV</h3>
+                                <div class="status-badge bg-stark-gold/20 text-stark-gold">PINNACLE</div>
+                            </div>
+                            <p class="text-sm text-gray-400 mb-4">The ultimate armor. Endgame configuration.</p>
+                            <div class="armor-stats">
+                                <div class="stat">
+                                    <span class="label">POWER</span>
+                                    <div class="bar"><div style="width: 100%"></div></div>
+                                </div>
+                                <div class="stat">
+                                    <span class="label">SPEED</span>
+                                    <div class="bar"><div style="width: 95%"></div></div>
+                                </div>
+                                <div class="stat">
+                                    <span class="label">DEFENSE</span>
+                                    <div class="bar"><div style="width: 98%"></div></div>
+                                </div>
+                            </div>
+                            <div class="flex gap-2 mt-4">
+                                <span class="tag">INFINITY</span>
+                                <span class="tag">ULTIMATE</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mark XVI (Nightclub) -->
+                <div class="armor-card" data-category="stealth">
+                    <div class="armor-card-inner">
+                        <div class="armor-image-container">
+                            <div class="armor-number">XVI</div>
+                            <img src="https://i.redd.it/24f4tlgnv0qe1.jpeg" alt="Mark XVI" class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity"><div class="absolute inset-0 bg-gradient-to-t from-stark-black via-transparent to-transparent"></div>
+                        </div>
+                        <div class="armor-content">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-2xl font-tech text-white">Mark XVI</h3>
+                                <div class="status-badge bg-stark-purple/20 text-stark-purple">STEALTH</div>
+                            </div>
+                            <p class="text-sm text-gray-400 mb-4">"Nightclub" - Black stealth operations variant.</p>
+                            <div class="armor-stats">
+                                <div class="stat">
+                                    <span class="label">POWER</span>
+                                    <div class="bar"><div style="width: 65%"></div></div>
+                                </div>
+                                <div class="stat">
+                                    <span class="label">SPEED</span>
+                                    <div class="bar"><div style="width: 88%"></div></div>
+                                </div>
+                                <div class="stat">
+                                    <span class="label">DEFENSE</span>
+                                    <div class="bar"><div style="width: 60%"></div></div>
+                                </div>
+                            </div>
+                            <div class="flex gap-2 mt-4">
+                                <span class="tag">BLACK</span>
+                                <span class="tag">SILENT</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-stark-bg border-t border-stark-blue/20 py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <div class="text-xl font-tech font-bold text-stark-blue mb-4">STARK INDUSTRIES</div>
+                    <p class="text-sm text-gray-500 mb-4">Advanced technology solutions for a better tomorrow.</p>
+                </div>
+                <div>
+                    <div class="text-sm font-tech text-stark-blue mb-4 tracking-wider">NAVIGATION</div>
+                    <div class="space-y-2">
+                        <a href="index.html" class="block text-sm text-gray-500 hover:text-stark-blue transition-colors">Home</a>
+                        <a href="armory.html" class="block text-sm text-gray-500 hover:text-stark-blue transition-colors">Armory</a>
+                        <a href="systems.html" class="block text-sm text-gray-500 hover:text-stark-blue transition-colors">Systems</a>
+                        <a href="protocols.html" class="block text-sm text-gray-500 hover:text-stark-blue transition-colors">Protocols</a>
+                    </div>
+                </div>
+                <div>
+                    <div class="text-sm font-tech text-stark-blue mb-4 tracking-wider">ARMORY STATS</div>
+                    <div class="space-y-3">
+                        <div class="flex justify-between text-xs">
+                            <span class="text-gray-500">Total Marks</span>
+                            <span class="text-stark-green">85+</span>
+                        </div>
+                        <div class="flex justify-between text-xs">
+                            <span class="text-gray-500">Active Suits</span>
+                            <span class="text-stark-green">12</span>
+                        </div>
+                        <div class="flex justify-between text-xs">
+                            <span class="text-gray-500">In Development</span>
+                            <span class="text-stark-gold">3</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-stark-blue/10 pt-8 text-center">
+                <p class="text-xs font-mono text-gray-600">© 2024 STARK INDUSTRIES. CLASSIFIED. RESTRICTED ACCESS ONLY.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+    <script src="armory.js"></script>
+</body>
+</html>
